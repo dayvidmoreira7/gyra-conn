@@ -6,7 +6,7 @@ import {
 
 import './index.css';
 
-const App = ({
+const Widget = ({
   visible,
   width,
   height,
@@ -71,4 +71,4 @@ const App = ({
   );
 }
 
-export default App;
+export default Widget;

@@ -3073,7 +3073,7 @@ Object.defineProperty(exports, "OptionCard", {
 var _OptionCard = _interopRequireDefault(require("./OptionCard"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./OptionCard":"NeWY"}],"lY9v":[function(require,module,exports) {
+},{"./OptionCard":"NeWY"}],"e5Er":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3095,7 +3095,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var App = function App(_ref) {
+var Widget = function Widget(_ref) {
   var visible = _ref.visible,
       width = _ref.width,
       height = _ref.height;
@@ -3156,7 +3156,7 @@ var App = function App(_ref) {
   }));
 };
 
-var _default = App;
+var _default = Widget;
 exports.default = _default;
 },{"react":"n8MK","react-modal":"jAUu","./components":"iA92","./index.css":"ghqz"}],"Focm":[function(require,module,exports) {
 "use strict";
@@ -3165,15 +3165,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _client = _interopRequireDefault(require("react-dom/client"));
 
-var _App = _interopRequireDefault(require("./App"));
+var _Widget = _interopRequireDefault(require("./Widget"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var root = document.querySelector('#gyra-connect-widget');
 
-_client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, {
+_client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_Widget.default, {
   visible: root.getAttribute('visible'),
   width: root.getAttribute('width') || '500px',
   height: root.getAttribute('height') || '700px'
 })));
-},{"react":"n8MK","react-dom/client":"NdAl","./App":"lY9v"}]},{},["Focm"], null)
+},{"react":"n8MK","react-dom/client":"NdAl","./Widget":"e5Er"}]},{},["Focm"], null)
