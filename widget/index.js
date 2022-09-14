@@ -3079,7 +3079,9 @@ var App = function App(_ref) {
     alt: "Logo da plataforma"
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-list-item-label"
-  }, "Redecard")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Redecard"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item-progress"
+  })), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-list-item"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cielo_S.A._logo.svg/1200px-Cielo_S.A._logo.svg.png",
@@ -3087,7 +3089,9 @@ var App = function App(_ref) {
     alt: "Logo da plataforma"
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-list-item-label"
-  }, "Cielo"))), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Cielo"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item-progress"
+  }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-progress"
   }));
 };

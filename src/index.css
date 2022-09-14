@@ -54,9 +54,6 @@
   cursor: pointer;
   transition: .3s;
 }
-#widget > .widget-list-area > .widget-list-item:hover {
-  transform: scale(1.1);  
-}
 #widget > .widget-list-area > .widget-list-item + .widget-list-item {
   margin-top: 20px;
 } 
@@ -71,6 +68,22 @@
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+}
+#widget > .widget-list-area > .widget-list-item:hover > .widget-list-item-label {
+  color: #ffffff;
+  z-index: 999;
+}
+#widget > .widget-list-area > .widget-list-item > .widget-list-item-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  
+  width: 20px;
+  height: 100%;
+  background-color: #0BB599;
+}
+#widget > .widget-list-area > .widget-list-item:hover > .widget-list-item-progress {
+  width: 100%; 
 }
 
 @media(max-width: 768px) {

@@ -54,6 +54,8 @@ const App = ({
           <div className="widget-list-item-label">
             Redecard
           </div>
+
+          <div className="widget-list-item-progress" />
         </div>
 
         <div className="widget-list-item">
@@ -66,6 +68,8 @@ const App = ({
           <div className="widget-list-item-label">
             Cielo
           </div>
+
+          <div className="widget-list-item-progress" />
         </div>
       </div>
 
