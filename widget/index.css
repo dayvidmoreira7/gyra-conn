@@ -62,6 +62,32 @@
   background: #0f8673; 
 }
 
+.ReactModal__Overlay {
+  animation: overlay_modal_entry 1 .3s;
+}
+.ReactModal__Content {
+  animation: modal_entry 1 2s;
+}
+
+@keyframes overlay_modal_entry {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes modal_entry {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #widget > .widget-logo-area > .widget-logo {
   width: 100%;
   max-width: 300px;
