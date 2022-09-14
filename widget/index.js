@@ -3057,11 +3057,67 @@ var OptionCard = function OptionCard(_ref) {
 
 var _default = OptionCard;
 exports.default = _default;
+},{"react":"n8MK","./styles.css":"ghqz"}],"xIKP":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("./styles.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IntegrationForm = function IntegrationForm() {
+  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "integration-form-container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "integration-form-item"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "gyra-connect-input",
+    type: "email",
+    required: true,
+    placeholder: "E-mail"
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "integration-form-item"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "gyra-connect-input",
+    type: "password",
+    required: true,
+    placeholder: "Senha"
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "integration-form-item"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "gyra-connect-checkbox-area"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "gyra-connect-checkbox",
+    type: "checkbox"
+  }), ' ', /*#__PURE__*/_react.default.createElement("div", {
+    className: "gyra-connect-label"
+  }, "Estou ciente e permito que a Gyramais acesse em modo de leitura os dados da integra\xE7\xE3o"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "integration-form-item"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "gyra-connect-button",
+    type: "submit"
+  }, "Integrar"))));
+};
+
+var _default = IntegrationForm;
+exports.default = _default;
 },{"react":"n8MK","./styles.css":"ghqz"}],"iA92":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
+});
+Object.defineProperty(exports, "IntegrationForm", {
+  enumerable: true,
+  get: function () {
+    return _IntegrationForm.default;
+  }
 });
 Object.defineProperty(exports, "OptionCard", {
   enumerable: true,
@@ -3072,8 +3128,10 @@ Object.defineProperty(exports, "OptionCard", {
 
 var _OptionCard = _interopRequireDefault(require("./OptionCard"));
 
+var _IntegrationForm = _interopRequireDefault(require("./IntegrationForm"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./OptionCard":"NeWY"}],"e5Er":[function(require,module,exports) {
+},{"./OptionCard":"NeWY","./IntegrationForm":"xIKP"}],"e5Er":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3166,6 +3224,7 @@ var Widget = function Widget(_ref) {
       var logo = _ref2.logo,
           label = _ref2.label;
       return /*#__PURE__*/_react.default.createElement(_components.OptionCard, {
+        key: label,
         logo: logo,
         label: label,
         onClick: function onClick() {
@@ -3187,8 +3246,10 @@ var Widget = function Widget(_ref) {
       alt: "Logo"
     })), /*#__PURE__*/_react.default.createElement("h1", {
       align: "center"
-    }, "Insira as informa\xE7\xF5es da integra\xE7\xE3o"))];
-  }, [options]);
+    }, "Insira as informa\xE7\xF5es da integra\xE7\xE3o ", selectedIntegration), /*#__PURE__*/_react.default.createElement("div", {
+      className: "widget-form-area"
+    }, /*#__PURE__*/_react.default.createElement(_components.IntegrationForm, null)))];
+  }, [options, selectedIntegration]);
   return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
     isOpen: visible === 'true',
     style: style,

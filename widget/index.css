@@ -22,6 +22,7 @@
   opacity: .15;
 }
 .option-card > .option-card-label {
+  z-index: 10;
   width: 100%;
   
   font-size: 30px;
@@ -29,8 +30,7 @@
   text-align: center;
 }
 .option-card:hover > .option-card-label {
-  color: #ffffff;
-  z-index: 999;
+  color: #000000;
 }
 .option-card > .option-card-progress {
   position: absolute;
@@ -44,7 +44,57 @@
 .option-card:hover > .option-card-progress {
   width: 100%; 
 }
-* {
+.gyra-connect-input {
+  outline: none !important;
+
+  width: calc(100% - 40px);
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #0BB599;
+
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.gyra-connect-input:hover,
+.gyra-connect-input:focus {
+  box-shadow: 0 0 4px #0BB599;
+}
+
+.gyra-connect-checkbox-area {
+  display: flex;
+}
+.gyra-connect-checkbox-area .gyra-connect-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+
+  accent-color: #0BB599;
+}
+.gyra-connect-checkbox-area .gyra-connect-label {
+  width: 100%;
+}
+
+.gyra-connect-button {
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+
+  background-color: #0BB599;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+.gyra-connect-button:hover {
+  filter: brightness(1.1);
+}
+
+.integration-form-container {
+  display: grid; 
+  gap: 20px;
+}* {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: .3s;
 }
@@ -95,6 +145,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  height: 68px;
 }
 
 #widget .widget-back-button {
@@ -106,7 +158,7 @@
   border-radius: 50%;
   background-color: #0BB599;
   
-  color: #ffffff;
+  color: #000000;
   font-size: 20px;
 
   display: flex;
@@ -139,8 +191,16 @@
   overflow-x: hidden;
 }
 
+#widget .widget-form-area {
+  margin-top: 110px;
+}
+
 @media(max-width: 768px) {
   h1 {
     font-size: 24px;
+  }
+
+  #widget .widget-logo-area {
+    height: auto;
   }
 }

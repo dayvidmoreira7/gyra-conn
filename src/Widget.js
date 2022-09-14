@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import Modal from 'react-modal';
 import {
+  IntegrationForm,
   OptionCard,
 } from './components';
 
@@ -58,6 +59,7 @@ const Widget = ({
       <div className="widget-list-area">
         {options.map(({ logo, label }) => (
           <OptionCard
+            key={label}
             logo={logo}
             label={label}
             onClick={() => {
@@ -89,10 +91,14 @@ const Widget = ({
       </div>
 
       <h1 align="center">
-        Insira as informações da integração
+        Insira as informações da integração {selectedIntegration}
       </h1>
+      
+      <div className="widget-form-area">
+        <IntegrationForm />
+      </div>
     </>
-  )]), [options]);
+  )]), [options, selectedIntegration]);
 
   return (
     <Modal

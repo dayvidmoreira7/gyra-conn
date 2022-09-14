@@ -49,6 +49,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  height: 68px;
 }
 
 #widget .widget-back-button {
@@ -60,7 +62,7 @@
   border-radius: 50%;
   background-color: #0BB599;
   
-  color: #ffffff;
+  color: #000000;
   font-size: 20px;
 
   display: flex;
@@ -93,8 +95,16 @@
   overflow-x: hidden;
 }
 
+#widget .widget-form-area {
+  margin-top: 110px;
+}
+
 @media(max-width: 768px) {
   h1 {
     font-size: 24px;
+  }
+
+  #widget .widget-logo-area {
+    height: auto;
   }
 }
