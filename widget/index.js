@@ -3012,9 +3012,68 @@ function _interopRequireDefault(obj) {
 
 exports.default = _Modal2.default;
 module.exports = exports["default"];
-},{"./components/Modal":"pjnD"}],"vKFU":[function(require,module,exports) {
+},{"./components/Modal":"pjnD"}],"ghqz":[function(require,module,exports) {
 
-},{}],"lY9v":[function(require,module,exports) {
+},{}],"NeWY":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("./styles.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * 
+ * @param {{
+ *  logo?: String
+ *  label: String
+ *  onClick: void
+ * }} props 
+ * @returns {React.FC}
+ */
+var OptionCard = function OptionCard(_ref) {
+  var logo = _ref.logo,
+      label = _ref.label,
+      onClick = _ref.onClick;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "option-card",
+    onClick: onClick
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: logo,
+    className: "option-card-logo",
+    alt: "Logo da plataforma"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "option-card-label"
+  }, label), /*#__PURE__*/_react.default.createElement("div", {
+    className: "option-card-progress"
+  }));
+};
+
+var _default = OptionCard;
+exports.default = _default;
+},{"react":"n8MK","./styles.css":"ghqz"}],"iA92":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "OptionCard", {
+  enumerable: true,
+  get: function () {
+    return _OptionCard.default;
+  }
+});
+
+var _OptionCard = _interopRequireDefault(require("./OptionCard"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./OptionCard":"NeWY"}],"lY9v":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3025,6 +3084,8 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactModal = _interopRequireDefault(require("react-modal"));
+
+var _components = require("./components");
 
 require("./index.css");
 
@@ -3055,6 +3116,18 @@ var App = function App(_ref) {
       }
     };
   }, [width, height]);
+  var options = (0, _react.useMemo)(function () {
+    return [{
+      logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Rede_S.A._logo.svg/800px-Rede_S.A._logo.svg.png',
+      label: 'Redecard'
+    }, {
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cielo_S.A._logo.svg/1200px-Cielo_S.A._logo.svg.png',
+      label: 'Cielo'
+    }, {
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nubank_logo_2021.svg/640px-Nubank_logo_2021.svg.png',
+      label: 'Nubank'
+    }];
+  }, []);
   return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
     isOpen: visible === 'true',
     contentLabel: "GyraConn",
@@ -3071,34 +3144,21 @@ var App = function App(_ref) {
     align: "center"
   }, "Selecione a integra\xE7\xE3o que deseja realizar"), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-list-area"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Rede_S.A._logo.svg/800px-Rede_S.A._logo.svg.png",
-    className: "widget-list-item-logo",
-    alt: "Logo da plataforma"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item-label"
-  }, "Redecard"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item-progress"
+  }, options.map(function (_ref2) {
+    var logo = _ref2.logo,
+        label = _ref2.label;
+    return /*#__PURE__*/_react.default.createElement(_components.OptionCard, {
+      logo: logo,
+      label: label
+    });
   })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cielo_S.A._logo.svg/1200px-Cielo_S.A._logo.svg.png",
-    className: "widget-list-item-logo",
-    alt: "Logo da plataforma"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item-label"
-  }, "Cielo"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "widget-list-item-progress"
-  }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-progress"
   }));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"n8MK","react-modal":"jAUu","./index.css":"vKFU"}],"Focm":[function(require,module,exports) {
+},{"react":"n8MK","react-modal":"jAUu","./components":"iA92","./index.css":"ghqz"}],"Focm":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
