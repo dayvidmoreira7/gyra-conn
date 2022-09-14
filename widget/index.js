@@ -3235,20 +3235,50 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+var colorIsLighter = function colorIsLighter(color) {
+  var hex = color.replace('#', '');
+  var c_r = parseInt(hex.substring(0, 0 + 2), 16) * 299;
+  var c_g = parseInt(hex.substring(2, 2 + 2), 16) * 587;
+  var c_b = parseInt(hex.substring(4, 4 + 2), 16) * 114;
+  return (c_r + c_g + c_b) / 1000 > 155;
+};
+/**
+ * 
+ * @param {{
+ *  token: String
+ *  visible: 'true' | 'false'
+ *  width?: String
+ *  height?: String
+ * }} param0 
+ * @returns 
+ */
+
+
 var Widget = function Widget(_ref) {
-  var visible = _ref.visible,
+  var token = _ref.token,
+      visible = _ref.visible,
       width = _ref.width,
       height = _ref.height;
 
-  var _useState = (0, _react.useState)(0),
+  var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      index = _useState2[0],
-      setIndex = _useState2[1];
+      internalVisible = _useState2[0],
+      setInternalVisible = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(),
+  var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      selectedIntegration = _useState4[0],
-      setSelectedIntegration = _useState4[1];
+      index = _useState4[0],
+      setIndex = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      selectedIntegration = _useState6[0],
+      setSelectedIntegration = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      partner = _useState8[0],
+      setPartner = _useState8[1];
 
   var style = (0, _react.useMemo)(function () {
     return {
@@ -3325,8 +3355,36 @@ var Widget = function Widget(_ref) {
       }
     })))];
   }, [options, selectedIntegration]);
+  (0, _react.useEffect)(function () {
+    if (token) {
+      fetch("https://api.bewiz.com.br/hackathon/find_by_token/".concat(token), {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (data) {
+        return data.json();
+      }).then(function (data) {
+        console.log(data);
+        setPartner(data);
+      });
+    }
+  }, [token]);
+  (0, _react.useEffect)(function () {
+    if (partner) {
+      if (partner.colors) {
+        document.querySelector(':root').style.setProperty('--primary-color', partner.colors);
+        document.querySelector(':root').style.setProperty('--primary-text-color', colorIsLighter(partner.colors) ? '#000000' : '#ffffff');
+      }
+    }
+  }, [partner]);
+  (0, _react.useEffect)(function () {
+    if (visible === 'true' && partner) {
+      setInternalVisible(true);
+    }
+  }, [visible, partner]);
   return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
-    isOpen: visible === 'true',
+    isOpen: internalVisible,
     style: style,
     id: "widget"
   }, content[index], /*#__PURE__*/_react.default.createElement("div", {
@@ -3351,6 +3409,7 @@ var root = document.querySelector('#gyra-connect-widget');
 
 _client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_Widget.default, {
   visible: root.getAttribute('visible'),
+  token: root.getAttribute('token'),
   width: root.getAttribute('width') || '500px',
   height: root.getAttribute('height') || '700px'
 })));

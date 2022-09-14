@@ -8,6 +8,7 @@ ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <Widget
       visible={root.getAttribute('visible')}
+      token={root.getAttribute('token')}
       width={root.getAttribute('width') || '500px'}
       height={root.getAttribute('height') || '700px'}
     />

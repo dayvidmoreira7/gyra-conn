@@ -28,9 +28,11 @@
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+
+  transition: .3s;
 }
 .option-card:hover > .option-card-label {
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .option-card > .option-card-progress {
   position: absolute;
@@ -39,7 +41,9 @@
   
   width: 20px;
   height: 100%;
-  background-color: #0BB599;
+  background-color: var(--primary-color);
+
+  transition: .3s;
 }
 .option-card:hover > .option-card-progress {
   width: 100%; 

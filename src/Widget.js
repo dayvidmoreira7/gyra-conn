@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Modal from 'react-modal';
 import {
   IntegrationForm,
@@ -8,13 +8,37 @@ import {
 
 import './index.css';
 
+const colorIsLighter = (color) => {
+  const hex = color.replace('#', '');
+  const c_r = parseInt(hex.substring(0, 0 + 2), 16) * 299;
+  const c_g = parseInt(hex.substring(2, 2 + 2), 16) * 587;
+  const c_b = parseInt(hex.substring(4, 4 + 2), 16) * 114;
+  
+  return ((c_r + c_g + c_b) / 1000) > 155;
+}
+
+/**
+ * 
+ * @param {{
+ *  token: String
+ *  visible: 'true' | 'false'
+ *  width?: String
+ *  height?: String
+ * }} param0 
+ * @returns 
+ */
 const Widget = ({
+  token,
   visible,
   width,
   height,
 }) => {
+  const [internalVisible, setInternalVisible] = useState(false);
+
   const [index, setIndex] = useState(0);
   const [selectedIntegration, setSelectedIntegration] = useState();
+
+  const [partner, setPartner] = useState();
 
   const style = useMemo(() => ({
     overlay: {
@@ -110,9 +134,38 @@ const Widget = ({
     </>
   )]), [options, selectedIntegration]);
 
+  useEffect(() => {
+    if (token) {
+      fetch(`https://api.bewiz.com.br/hackathon/find_by_token/${token}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((data) => data.json()).then((data) => {
+        console.log(data);
+        setPartner(data);
+      })
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (partner) {
+      if (partner.colors) {
+        document.querySelector(':root').style.setProperty('--primary-color', partner.colors);
+        document.querySelector(':root').style.setProperty('--primary-text-color', colorIsLighter(partner.colors) ? '#000000' : '#ffffff');
+      }
+    }
+  }, [partner]);
+
+  useEffect(() => {
+    if (visible === 'true' && partner) {
+      setInternalVisible(true);
+    }
+  }, [visible, partner]);
+
   return (
     <Modal
-      isOpen={visible === 'true'}
+      isOpen={internalVisible}
       style={style}
       id="widget"
     >
