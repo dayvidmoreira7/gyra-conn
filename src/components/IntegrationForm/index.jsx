@@ -1,20 +1,45 @@
 import React from 'react';
+import { Button } from '../';
 
 import './styles.css';
 
-const IntegrationForm = () => {
+/**
+ * 
+ * @param {{
+ *  onComplete: void
+ * }} props
+ * @returns 
+ */
+const IntegrationForm = ({
+  onComplete,
+}) => {
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        if (e) {
+          e.preventDefault();
+        }
+
+        const variables = {};
+        e.target
+          .querySelectorAll('input')
+          .forEach((element) => variables[element.id] = element.value);
+        
+        console.log(variables);
+
+        onComplete();
+      }}
+    >
       <div className="integration-form-container">
         <div className="integration-form-item">
-          <input className="gyra-connect-input" type="email" required placeholder="E-mail" />
+          <input id="email" className="gyra-connect-input" type="email" required placeholder="E-mail" />
         </div>
         <div className="integration-form-item">
-          <input className="gyra-connect-input" type="password" required placeholder="Senha" />
+          <input id="password" className="gyra-connect-input" type="password" required placeholder="Senha" />
         </div>
         <div className="integration-form-item">
           <div className="gyra-connect-checkbox-area">
-            <input className="gyra-connect-checkbox" type="checkbox" />
+            <input id="permission" className="gyra-connect-checkbox" type="checkbox" required />
             {' '}
             <div className="gyra-connect-label">
               Estou ciente e permito que a Gyramais acesse em modo de leitura os dados da integração
@@ -22,9 +47,9 @@ const IntegrationForm = () => {
           </div>
         </div>
         <div className="integration-form-item">
-          <button className="gyra-connect-button" type="submit">
+          <Button type="submit">
             Integrar
-          </button>
+          </Button>
         </div>
       </div>
     </form>

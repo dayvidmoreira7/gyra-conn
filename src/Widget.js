@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import {
   IntegrationForm,
   OptionCard,
+  Button,
 } from './components';
 
 import './index.css';
@@ -69,6 +70,10 @@ const Widget = ({
           />
         ))}
       </div>
+
+      <Button>
+        Concluir
+      </Button>
     </>
   ), (
     <>
@@ -95,7 +100,12 @@ const Widget = ({
       </h1>
       
       <div className="widget-form-area">
-        <IntegrationForm />
+        <IntegrationForm
+          onComplete={() => {
+            setSelectedIntegration();
+            setIndex(0);
+          }}
+        />
       </div>
     </>
   )]), [options, selectedIntegration]);

@@ -3067,16 +3067,40 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _ = require("../");
+
 require("./styles.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var IntegrationForm = function IntegrationForm() {
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("div", {
+/**
+ * 
+ * @param {{
+ *  onComplete: void
+ * }} props
+ * @returns 
+ */
+var IntegrationForm = function IntegrationForm(_ref) {
+  var onComplete = _ref.onComplete;
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: function onSubmit(e) {
+      if (e) {
+        e.preventDefault();
+      }
+
+      var variables = {};
+      e.target.querySelectorAll('input').forEach(function (element) {
+        return variables[element.id] = element.value;
+      });
+      console.log(variables);
+      onComplete();
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "integration-form-container"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "integration-form-item"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    id: "email",
     className: "gyra-connect-input",
     type: "email",
     required: true,
@@ -3084,6 +3108,7 @@ var IntegrationForm = function IntegrationForm() {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "integration-form-item"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    id: "password",
     className: "gyra-connect-input",
     type: "password",
     required: true,
@@ -3093,25 +3118,68 @@ var IntegrationForm = function IntegrationForm() {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "gyra-connect-checkbox-area"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    id: "permission",
     className: "gyra-connect-checkbox",
-    type: "checkbox"
+    type: "checkbox",
+    required: true
   }), ' ', /*#__PURE__*/_react.default.createElement("div", {
     className: "gyra-connect-label"
   }, "Estou ciente e permito que a Gyramais acesse em modo de leitura os dados da integra\xE7\xE3o"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "integration-form-item"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "gyra-connect-button",
+  }, /*#__PURE__*/_react.default.createElement(_.Button, {
     type: "submit"
   }, "Integrar"))));
 };
 
 var _default = IntegrationForm;
 exports.default = _default;
+},{"react":"n8MK","../":"iA92","./styles.css":"ghqz"}],"R4MS":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("./styles.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * 
+ * @param {{
+ *  children: React.FC
+ *  type?: String
+ *  onClick?: void
+ * }} props
+ * @returns {React.FC}
+ */
+var Button = function Button(_ref) {
+  var children = _ref.children,
+      type = _ref.type,
+      onClick = _ref.onClick;
+  return /*#__PURE__*/_react.default.createElement("button", {
+    className: "gyra-connect-button",
+    type: type,
+    onClick: onClick
+  }, children);
+};
+
+var _default = Button;
+exports.default = _default;
 },{"react":"n8MK","./styles.css":"ghqz"}],"iA92":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _Button.default;
+  }
 });
 Object.defineProperty(exports, "IntegrationForm", {
   enumerable: true,
@@ -3130,8 +3198,10 @@ var _OptionCard = _interopRequireDefault(require("./OptionCard"));
 
 var _IntegrationForm = _interopRequireDefault(require("./IntegrationForm"));
 
+var _Button = _interopRequireDefault(require("./Button"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./OptionCard":"NeWY","./IntegrationForm":"xIKP"}],"e5Er":[function(require,module,exports) {
+},{"./OptionCard":"NeWY","./IntegrationForm":"xIKP","./Button":"R4MS"}],"e5Er":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3232,7 +3302,7 @@ var Widget = function Widget(_ref) {
           setIndex(1);
         }
       });
-    }))), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    })), /*#__PURE__*/_react.default.createElement(_components.Button, null, "Concluir")), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-logo-area"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-back-button",
@@ -3248,7 +3318,12 @@ var Widget = function Widget(_ref) {
       align: "center"
     }, "Insira as informa\xE7\xF5es da integra\xE7\xE3o ", selectedIntegration), /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-form-area"
-    }, /*#__PURE__*/_react.default.createElement(_components.IntegrationForm, null)))];
+    }, /*#__PURE__*/_react.default.createElement(_components.IntegrationForm, {
+      onComplete: function onComplete() {
+        setSelectedIntegration();
+        setIndex(0);
+      }
+    })))];
   }, [options, selectedIntegration]);
   return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
     isOpen: visible === 'true',
