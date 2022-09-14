@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:widget": "parcel build src/index.js --no-source-maps -d widget"
+    "build:widget": "parcel build src/index.js --no-source-maps --no-minify -d widget"
   },
   "eslintConfig": {
     "extends": [

@@ -1,0 +1,15 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: .3s;
+}
+
+#widget > .widget-logo-area > .widget-logo {
+  width: 100%;
+  max-width: 357px;
+}
+
+@media(max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+}

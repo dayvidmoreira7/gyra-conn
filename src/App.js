@@ -1,9 +1,15 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const App = ({ visible }) => {
+import './index.css';
+
+const App = ({
+  visible,
+  width,
+  height,
+}) => {
   return (
-    <div className="App">
+    <div id="widget">
       <Modal
         isOpen={visible === 'true'}
         contentLabel="GyraConn"
@@ -14,12 +20,25 @@ const App = ({ visible }) => {
             justifyContent: 'center',
           },
           content: {
-            // maxWidth: 1200,
-            // maxHeight: 700,
+            margin: 'auto',
+            maxWidth: width,
+            maxHeight: height,
+            borderRadius: 20,
+            backgroundColor: '#f0f2f5',
           },
         }}
       >
-        Teste
+        <div className="widget-logo-area" align="center">
+          <img
+            className="widget-logo"
+            src="https://gyramais.com.br/GyraMarca.png"
+            alt="Logo"
+          />
+        </div>
+
+        <h1 align="center">
+          Selecione a integração que deseja realizar
+        </h1>
       </Modal>
     </div>
   );
