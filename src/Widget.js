@@ -136,6 +136,10 @@ const Widget = ({
 
   useEffect(() => {
     if (token) {
+      if (token === 'gyramais') {
+        return setPartner(true);
+      }
+
       fetch(`https://api.bewiz.com.br/hackathon/find_by_token/${token}`, {
         method: 'GET',
         headers: {
