@@ -3071,7 +3071,23 @@ var App = function App(_ref) {
     align: "center"
   }, "Selecione a integra\xE7\xE3o que deseja realizar"), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-list-area"
-  }, "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x"), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Rede_S.A._logo.svg/800px-Rede_S.A._logo.svg.png",
+    className: "widget-list-item-logo",
+    alt: "Logo da plataforma"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item-label"
+  }, "Redecard")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cielo_S.A._logo.svg/1200px-Cielo_S.A._logo.svg.png",
+    className: "widget-list-item-logo",
+    alt: "Logo da plataforma"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-item-label"
+  }, "Cielo"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-progress"
   }));
 };

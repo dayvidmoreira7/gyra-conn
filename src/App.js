@@ -44,45 +44,29 @@ const App = ({
       </h1>
 
       <div className="widget-list-area">
-        x
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        x
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        x
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        x
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        x
+        <div className="widget-list-item">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Rede_S.A._logo.svg/800px-Rede_S.A._logo.svg.png"
+            className="widget-list-item-logo"
+            alt="Logo da plataforma"
+          />
+
+          <div className="widget-list-item-label">
+            Redecard
+          </div>
+        </div>
+
+        <div className="widget-list-item">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cielo_S.A._logo.svg/1200px-Cielo_S.A._logo.svg.png"
+            className="widget-list-item-logo"
+            alt="Logo da plataforma"
+          />
+
+          <div className="widget-list-item-label">
+            Cielo
+          </div>
+        </div>
       </div>
 
       <div className="widget-progress" />
