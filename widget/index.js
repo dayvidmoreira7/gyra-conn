@@ -3022,7 +3022,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactModal = _interopRequireDefault(require("react-modal"));
 
@@ -3030,16 +3030,16 @@ require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 var App = function App(_ref) {
   var visible = _ref.visible,
       width = _ref.width,
       height = _ref.height;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    id: "widget"
-  }, /*#__PURE__*/_react.default.createElement(_reactModal.default, {
-    isOpen: visible === 'true',
-    contentLabel: "GyraConn",
-    style: {
+  var style = (0, _react.useMemo)(function () {
+    return {
       overlay: {
         backgroundColor: '#00000090',
         display: 'flex',
@@ -3050,9 +3050,16 @@ var App = function App(_ref) {
         maxWidth: width,
         maxHeight: height,
         borderRadius: 20,
-        backgroundColor: '#f0f2f5'
+        backgroundColor: '#f0f2f5',
+        border: 0
       }
-    }
+    };
+  }, [width, height]);
+  return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
+    isOpen: visible === 'true',
+    contentLabel: "GyraConn",
+    style: style,
+    id: "widget"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-logo-area",
     align: "center"
@@ -3062,7 +3069,11 @@ var App = function App(_ref) {
     alt: "Logo"
   })), /*#__PURE__*/_react.default.createElement("h1", {
     align: "center"
-  }, "Selecione a integra\xE7\xE3o que deseja realizar")));
+  }, "Selecione a integra\xE7\xE3o que deseja realizar"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-list-area"
+  }, "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "x"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "widget-progress"
+  }));
 };
 
 var _default = App;
@@ -3082,7 +3093,7 @@ var root = document.querySelector('#gyra-connect-widget');
 
 _client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, {
   visible: root.getAttribute('visible'),
-  width: root.getAttribute('width') || '1200px',
+  width: root.getAttribute('width') || '500px',
   height: root.getAttribute('height') || '700px'
 })));
 },{"react":"n8MK","react-dom/client":"NdAl","./App":"lY9v"}]},{},["Focm"], null)

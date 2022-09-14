@@ -8,7 +8,7 @@ ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <App
       visible={root.getAttribute('visible')}
-      width={root.getAttribute('width') || '1200px'}
+      width={root.getAttribute('width') || '500px'}
       height={root.getAttribute('height') || '700px'}
     />
   </React.StrictMode>

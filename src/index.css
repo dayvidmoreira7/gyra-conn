@@ -3,9 +3,40 @@
   transition: .3s;
 }
 
+::-webkit-scrollbar {
+  width: .5rem;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #0BB599;
+  border-radius: 0.625rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0f8673; 
+}
+
 #widget > .widget-logo-area > .widget-logo {
   width: 100%;
-  max-width: 357px;
+  max-width: 300px;
+}
+
+#widget > .widget-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  
+  width: 100%;
+  height: 20px;
+  background-color: #0BB599;
+}
+
+#widget > .widget-list-area {
+  width: 100%;
+  height: 67%;
+
+  overflow: auto;
 }
 
 @media(max-width: 768px) {
