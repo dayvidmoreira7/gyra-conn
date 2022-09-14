@@ -43,12 +43,39 @@
   }
 }
 
-#widget > .widget-logo-area > .widget-logo {
-  width: 100%;
+#widget .widget-logo-area {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#widget .widget-back-button {
+  position: absolute;
+  left: 0;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #0BB599;
+  
+  color: #ffffff;
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+#widget .widget-logo-area .widget-logo {
+  width: 60%;
   max-width: 300px;
 }
 
-#widget > .widget-progress {
+#widget .widget-progress {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -58,7 +85,7 @@
   background-color: #0BB599;
 }
 
-#widget > .widget-list-area {
+#widget .widget-list-area {
   width: 100%;
   height: 67%;
 

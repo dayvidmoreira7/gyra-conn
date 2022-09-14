@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Modal from 'react-modal';
 import {
   OptionCard,
@@ -11,6 +11,9 @@ const Widget = ({
   width,
   height,
 }) => {
+  const [index, setIndex] = useState(0);
+  const [selectedIntegration, setSelectedIntegration] = useState();
+
   const style = useMemo(() => ({
     overlay: {
       backgroundColor: '#00000090',
@@ -38,14 +41,9 @@ const Widget = ({
     label: 'Nubank',
   }]), [])
 
-  return (
-    <Modal
-      isOpen={visible === 'true'}
-      contentLabel="GyraConn"
-      style={style}
-      id="widget"
-    >
-      <div className="widget-logo-area" align="center">
+  const content = useMemo(() => ([(
+    <>
+      <div className="widget-logo-area">
         <img
           className="widget-logo"
           src="https://gyramais.com.br/GyraMarca.png"
@@ -62,9 +60,47 @@ const Widget = ({
           <OptionCard
             logo={logo}
             label={label}
+            onClick={() => {
+              setSelectedIntegration(label)
+              setIndex(1);
+            }}
           />
         ))}
       </div>
+    </>
+  ), (
+    <>
+      <div className="widget-logo-area">
+        <div
+          className="widget-back-button"
+          onClick={() => {
+            setSelectedIntegration();
+            setIndex(0);
+          }}
+        >
+          🡸
+        </div>
+        
+        <img
+          className="widget-logo"
+          src="https://gyramais.com.br/GyraMarca.png"
+          alt="Logo"
+        />
+      </div>
+
+      <h1 align="center">
+        Insira as informações da integração
+      </h1>
+    </>
+  )]), [options]);
+
+  return (
+    <Modal
+      isOpen={visible === 'true'}
+      style={style}
+      id="widget"
+    >
+      {content[index]}
 
       <div className="widget-progress" />
     </Modal>
