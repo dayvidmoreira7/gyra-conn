@@ -9,6 +9,7 @@
   font-weight: bold;
 
   cursor: pointer;
+  outline: none !important;
 
   transition: .3s;
 

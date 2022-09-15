@@ -22,7 +22,7 @@
   animation: overlay_modal_entry 1 .3s;
 }
 .ReactModal__Content {
-  animation: modal_entry 1 2s;
+  animation: modal_entry 1 1s;
 }
 
 @keyframes overlay_modal_entry {
@@ -36,7 +36,7 @@
 @keyframes modal_entry {
   0% {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
