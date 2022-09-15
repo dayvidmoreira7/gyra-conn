@@ -7,11 +7,13 @@ import './styles.css';
  * 
  * @param {{
  *  onComplete: void
+ *  integration: String
  * }} props
  * @returns 
  */
 const IntegrationForm = ({
   onComplete,
+  integration,
 }) => {
   return (
     <form
@@ -20,13 +22,20 @@ const IntegrationForm = ({
           e.preventDefault();
         }
 
-        const variables = {};
+        const variables = {
+          integration,
+        };
         e.target
           .querySelectorAll('input')
           .forEach((element) => variables[element.id] = element.value);
         
-        console.log(variables);
+        const hash = btoa(JSON.stringify(variables));
+        variables.hash = hash;
 
+        const credentials = JSON.parse(localStorage.getItem('credentials') || '[]');
+        credentials.push(variables)
+
+        localStorage.setItem('credentials', JSON.stringify(credentials));
         onComplete();
       }}
     >

@@ -10,6 +10,7 @@ ReactDOM.createRoot(root).render(
       token={root.getAttribute('token')}
       width={root.getAttribute('width') || '500px'}
       height={root.getAttribute('height') || '700px'}
+      label={root.getAttribute('label') || 'Integrar'}
     />
   </React.StrictMode>
 );

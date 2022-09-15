@@ -34,6 +34,19 @@
 .option-card:hover > .option-card-label {
   color: var(--primary-text-color);
 }
+.option-card > .option-card-count {
+  z-index: 10;
+
+  position: absolute;
+  right: 20px;
+
+  padding: 2px 8px;
+  background-color: red;
+  border-radius: 50%;
+
+  color: white;
+  font-weight: bold;
+}
 .option-card > .option-card-progress {
   position: absolute;
   left: 0;
@@ -101,8 +114,16 @@
 
   color: var(--primary-text-color);
 }
-.gyra-connect-button:hover {
+.gyra-connect-button:not([disabled]):hover {
   filter: brightness(1.1);
+}
+.gyra-connect-button[disabled] {
+  cursor: default;
+  background-color: #c8ccd0;
+
+  color: #000000;
+
+  opacity: .4;
 }:root {
   --primary-color: #0BB599;
   --primary-text-color: #000000;
@@ -203,6 +224,10 @@
 
 #widget .widget-form-area {
   margin-top: 110px;
+}
+
+#widget .widget-blank-space {
+  height: 68%;
 }
 
 @media(max-width: 768px) {

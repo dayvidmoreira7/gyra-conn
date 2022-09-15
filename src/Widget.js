@@ -21,7 +21,7 @@ const colorIsLighter = (color) => {
  * 
  * @param {{
  *  token: String
- *  visible: 'true' | 'false'
+ *  label?: String
  *  width?: String
  *  height?: String
  * }} param0 
@@ -31,8 +31,9 @@ const Widget = ({
   token,
   width,
   height,
+  label,
 }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   const [index, setIndex] = useState(0);
   const [selectedIntegration, setSelectedIntegration] = useState();
@@ -66,6 +67,13 @@ const Widget = ({
     label: 'Nubank',
   }]), [])
 
+  const storedCredentials = useMemo(() => {
+    const credentials = JSON.parse(localStorage.getItem('credentials') || '[]');
+
+    return credentials;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, visible]);
+
   const content = useMemo(() => ([(
     <>
       <div className="widget-logo-area">
@@ -90,11 +98,19 @@ const Widget = ({
               setSelectedIntegration(label)
               setIndex(1);
             }}
+            count={storedCredentials.filter(({ integration }) => integration === label).length}
           />
         ))}
       </div>
 
-      <Button>
+      <Button
+        onClick={() => {
+          localStorage.clear();
+
+          setIndex(2);
+        }}
+        disabled={storedCredentials.length === 0}
+      >
         Concluir
       </Button>
     </>
@@ -124,6 +140,7 @@ const Widget = ({
       
       <div className="widget-form-area">
         <IntegrationForm
+          integration={selectedIntegration}
           onComplete={() => {
             setSelectedIntegration();
             setIndex(0);
@@ -131,7 +148,32 @@ const Widget = ({
         />
       </div>
     </>
-  )]), [options, selectedIntegration]);
+  ), (
+    <>
+      <div className="widget-logo-area">
+        <img
+          className="widget-logo"
+          src="https://gyramais.com.br/GyraMarca.png"
+          alt="Logo"
+        />
+      </div>
+
+      <h1 align="center">
+        Recebemos suas informações!
+      </h1>
+      
+      <div className="widget-blank-space" />
+
+      <Button
+        onClick={() => {
+          setVisible(false);
+          setIndex(0);
+        }}
+      >
+        Finalizar
+      </Button>
+    </>
+  )]), [options, selectedIntegration, storedCredentials]);
 
   useEffect(() => {
     if (token) {
@@ -164,7 +206,7 @@ const Widget = ({
     <>
       {partner && (
         <>
-          <Button onClick={() => setVisible(true)}>Integrar</Button>
+          <Button onClick={() => setVisible(true)}>{label}</Button>
 
           <Modal
             isOpen={visible}

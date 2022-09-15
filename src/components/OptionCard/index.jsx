@@ -8,6 +8,7 @@ import './styles.css';
  *  logo?: String
  *  label: String
  *  onClick: void
+ *  count?: number
  * }} props 
  * @returns {React.FC}
  */
@@ -15,6 +16,7 @@ const OptionCard = ({
   logo,
   label,
   onClick,
+  count,
 }) => (
   <div
     className="option-card"
@@ -29,6 +31,12 @@ const OptionCard = ({
     <div className="option-card-label">
       {label}
     </div>
+
+    {count > 0 && (
+      <div className="option-card-count">
+        {count}
+      </div>
+    )}
 
     <div className="option-card-progress" />
   </div>

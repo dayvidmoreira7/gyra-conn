@@ -34,6 +34,19 @@
 .option-card:hover > .option-card-label {
   color: var(--primary-text-color);
 }
+.option-card > .option-card-count {
+  z-index: 10;
+
+  position: absolute;
+  right: 20px;
+
+  padding: 2px 8px;
+  background-color: red;
+  border-radius: 50%;
+
+  color: white;
+  font-weight: bold;
+}
 .option-card > .option-card-progress {
   position: absolute;
   left: 0;

@@ -15,6 +15,14 @@
 
   color: var(--primary-text-color);
 }
-.gyra-connect-button:hover {
+.gyra-connect-button:not([disabled]):hover {
   filter: brightness(1.1);
+}
+.gyra-connect-button[disabled] {
+  cursor: default;
+  background-color: #c8ccd0;
+
+  color: #000000;
+
+  opacity: .4;
 }

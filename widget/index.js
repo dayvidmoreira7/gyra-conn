@@ -3034,13 +3034,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  logo?: String
  *  label: String
  *  onClick: void
+ *  count?: number
  * }} props 
  * @returns {React.FC}
  */
 var OptionCard = function OptionCard(_ref) {
   var logo = _ref.logo,
       label = _ref.label,
-      onClick = _ref.onClick;
+      onClick = _ref.onClick,
+      count = _ref.count;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "option-card",
     onClick: onClick
@@ -3050,7 +3052,9 @@ var OptionCard = function OptionCard(_ref) {
     alt: "Logo da plataforma"
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "option-card-label"
-  }, label), /*#__PURE__*/_react.default.createElement("div", {
+  }, label), count > 0 && /*#__PURE__*/_react.default.createElement("div", {
+    className: "option-card-count"
+  }, count), /*#__PURE__*/_react.default.createElement("div", {
     className: "option-card-progress"
   }));
 };
@@ -3077,22 +3081,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * 
  * @param {{
  *  onComplete: void
+ *  integration: String
  * }} props
  * @returns 
  */
 var IntegrationForm = function IntegrationForm(_ref) {
-  var onComplete = _ref.onComplete;
+  var onComplete = _ref.onComplete,
+      integration = _ref.integration;
   return /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: function onSubmit(e) {
       if (e) {
         e.preventDefault();
       }
 
-      var variables = {};
+      var variables = {
+        integration: integration
+      };
       e.target.querySelectorAll('input').forEach(function (element) {
         return variables[element.id] = element.value;
       });
-      console.log(variables);
+      var hash = btoa(JSON.stringify(variables));
+      variables.hash = hash;
+      var credentials = JSON.parse(localStorage.getItem('credentials') || '[]');
+      credentials.push(variables);
+      localStorage.setItem('credentials', JSON.stringify(credentials));
       onComplete();
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -3153,17 +3165,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  children: React.FC
  *  type?: String
  *  onClick?: void
+ *  disabled: boolean
  * }} props
  * @returns {React.FC}
  */
 var Button = function Button(_ref) {
   var children = _ref.children,
       type = _ref.type,
-      onClick = _ref.onClick;
+      onClick = _ref.onClick,
+      disabled = _ref.disabled;
   return /*#__PURE__*/_react.default.createElement("button", {
     className: "gyra-connect-button",
     type: type,
-    onClick: onClick
+    onClick: onClick,
+    disabled: disabled
   }, children);
 };
 
@@ -3246,7 +3261,7 @@ var colorIsLighter = function colorIsLighter(color) {
  * 
  * @param {{
  *  token: String
- *  visible: 'true' | 'false'
+ *  label?: String
  *  width?: String
  *  height?: String
  * }} param0 
@@ -3257,9 +3272,10 @@ var colorIsLighter = function colorIsLighter(color) {
 var Widget = function Widget(_ref) {
   var token = _ref.token,
       width = _ref.width,
-      height = _ref.height;
+      height = _ref.height,
+      label = _ref.label;
 
-  var _useState = (0, _react.useState)(false),
+  var _useState = (0, _react.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       visible = _useState2[0],
       setVisible = _useState2[1];
@@ -3308,6 +3324,10 @@ var Widget = function Widget(_ref) {
       label: 'Nubank'
     }];
   }, []);
+  var storedCredentials = (0, _react.useMemo)(function () {
+    var credentials = JSON.parse(localStorage.getItem('credentials') || '[]');
+    return credentials; // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, visible]);
   var content = (0, _react.useMemo)(function () {
     return [/*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-logo-area"
@@ -3329,9 +3349,19 @@ var Widget = function Widget(_ref) {
         onClick: function onClick() {
           setSelectedIntegration(label);
           setIndex(1);
-        }
+        },
+        count: storedCredentials.filter(function (_ref3) {
+          var integration = _ref3.integration;
+          return integration === label;
+        }).length
       });
-    })), /*#__PURE__*/_react.default.createElement(_components.Button, null, "Concluir")), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    })), /*#__PURE__*/_react.default.createElement(_components.Button, {
+      onClick: function onClick() {
+        localStorage.clear();
+        setIndex(2);
+      },
+      disabled: storedCredentials.length === 0
+    }, "Concluir")), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-logo-area"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-back-button",
@@ -3348,12 +3378,28 @@ var Widget = function Widget(_ref) {
     }, "Insira as informa\xE7\xF5es da integra\xE7\xE3o ", selectedIntegration), /*#__PURE__*/_react.default.createElement("div", {
       className: "widget-form-area"
     }, /*#__PURE__*/_react.default.createElement(_components.IntegrationForm, {
+      integration: selectedIntegration,
       onComplete: function onComplete() {
         setSelectedIntegration();
         setIndex(0);
       }
-    })))];
-  }, [options, selectedIntegration]);
+    }))), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "widget-logo-area"
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      className: "widget-logo",
+      src: "https://gyramais.com.br/GyraMarca.png",
+      alt: "Logo"
+    })), /*#__PURE__*/_react.default.createElement("h1", {
+      align: "center"
+    }, "Recebemos suas informa\xE7\xF5es!"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "widget-blank-space"
+    }), /*#__PURE__*/_react.default.createElement(_components.Button, {
+      onClick: function onClick() {
+        setVisible(false);
+        setIndex(0);
+      }
+    }, "Finalizar"))];
+  }, [options, selectedIntegration, storedCredentials]);
   (0, _react.useEffect)(function () {
     if (token) {
       if (token === 'gyramais') {
@@ -3385,7 +3431,7 @@ var Widget = function Widget(_ref) {
     onClick: function onClick() {
       return setVisible(true);
     }
-  }, "Integrar"), /*#__PURE__*/_react.default.createElement(_reactModal.default, {
+  }, label), /*#__PURE__*/_react.default.createElement(_reactModal.default, {
     isOpen: visible,
     onRequestClose: function onRequestClose() {
       return setVisible(false);
@@ -3415,6 +3461,7 @@ var root = document.querySelector('#gyra-connect-widget');
 _client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_Widget.default, {
   token: root.getAttribute('token'),
   width: root.getAttribute('width') || '500px',
-  height: root.getAttribute('height') || '700px'
+  height: root.getAttribute('height') || '700px',
+  label: root.getAttribute('label') || 'Integrar'
 })));
 },{"react":"n8MK","react-dom/client":"NdAl","./Widget":"e5Er"}]},{},["Focm"], null)
