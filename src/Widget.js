@@ -24,7 +24,7 @@ const colorIsLighter = (color) => {
  *  label?: String
  *  width?: String
  *  height?: String
- * }} param0 
+ * }} props 
  * @returns 
  */
 const Widget = ({
@@ -33,7 +33,7 @@ const Widget = ({
   height,
   label,
 }) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const [index, setIndex] = useState(0);
   const [selectedIntegration, setSelectedIntegration] = useState();

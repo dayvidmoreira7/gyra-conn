@@ -3275,7 +3275,7 @@ var Widget = function Widget(_ref) {
       height = _ref.height,
       label = _ref.label;
 
-  var _useState = (0, _react.useState)(true),
+  var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       visible = _useState2[0],
       setVisible = _useState2[1];
