@@ -29,11 +29,10 @@ const colorIsLighter = (color) => {
  */
 const Widget = ({
   token,
-  visible,
   width,
   height,
 }) => {
-  const [internalVisible, setInternalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const [index, setIndex] = useState(0);
   const [selectedIntegration, setSelectedIntegration] = useState();
@@ -161,22 +160,25 @@ const Widget = ({
     }
   }, [partner]);
 
-  useEffect(() => {
-    if (visible === 'true' && partner) {
-      setInternalVisible(true);
-    }
-  }, [visible, partner]);
-
   return (
-    <Modal
-      isOpen={internalVisible}
-      style={style}
-      id="widget"
-    >
-      {content[index]}
+    <>
+      {partner && (
+        <>
+          <Button onClick={() => setVisible(true)}>Integrar</Button>
 
-      <div className="widget-progress" />
-    </Modal>
+          <Modal
+            isOpen={visible}
+            onRequestClose={() => setVisible(false)}
+            style={style}
+            id="widget"
+          >
+            {content[index]}
+
+            <div className="widget-progress" />
+          </Modal>
+        </>
+      )}
+    </>
   );
 }
 

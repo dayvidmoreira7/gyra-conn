@@ -43,7 +43,7 @@
   height: 100%;
   background-color: var(--primary-color);
 
-  transition: .3s;
+  transition: .2s;
 }
 .option-card:hover > .option-card-progress {
   width: 100%; 

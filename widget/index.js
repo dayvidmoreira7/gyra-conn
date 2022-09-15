@@ -3256,14 +3256,13 @@ var colorIsLighter = function colorIsLighter(color) {
 
 var Widget = function Widget(_ref) {
   var token = _ref.token,
-      visible = _ref.visible,
       width = _ref.width,
       height = _ref.height;
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      internalVisible = _useState2[0],
-      setInternalVisible = _useState2[1];
+      visible = _useState2[0],
+      setVisible = _useState2[1];
 
   var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -3382,18 +3381,20 @@ var Widget = function Widget(_ref) {
       }
     }
   }, [partner]);
-  (0, _react.useEffect)(function () {
-    if (visible === 'true' && partner) {
-      setInternalVisible(true);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, partner && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_components.Button, {
+    onClick: function onClick() {
+      return setVisible(true);
     }
-  }, [visible, partner]);
-  return /*#__PURE__*/_react.default.createElement(_reactModal.default, {
-    isOpen: internalVisible,
+  }, "Integrar"), /*#__PURE__*/_react.default.createElement(_reactModal.default, {
+    isOpen: visible,
+    onRequestClose: function onRequestClose() {
+      return setVisible(false);
+    },
     style: style,
     id: "widget"
   }, content[index], /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-progress"
-  }));
+  }))));
 };
 
 var _default = Widget;
@@ -3412,7 +3413,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var root = document.querySelector('#gyra-connect-widget');
 
 _client.default.createRoot(root).render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_Widget.default, {
-  visible: root.getAttribute('visible'),
   token: root.getAttribute('token'),
   width: root.getAttribute('width') || '500px',
   height: root.getAttribute('height') || '700px'
